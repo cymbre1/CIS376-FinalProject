@@ -10,12 +10,14 @@ public class FoxController : MonoBehaviour
 
     protected float elapsedTime = 0;
     protected Transform tf;
+    protected BoxCollider bc;
     protected Vector2 rotation;
 
     // Start is called before the first frame update
     void Start()
     {
         tf = GetComponent<Transform>();
+        bc = GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
@@ -42,6 +44,8 @@ public class FoxController : MonoBehaviour
 		rotation.x += -Input.GetAxis ("Mouse Y");
         rotation.x = Mathf.Clamp(rotation.x, -10.0f, 10.0f);
 		transform.eulerAngles = (Vector2)rotation * horizontalSpeed;
+
+        // if(bc.)
         // if (Input.GetKeyDown("d")){
 		// 	tf.position += Vector3.right * horizontalSpeed * Time.deltaTime;
 		// }
