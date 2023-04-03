@@ -25,10 +25,6 @@ public class FoxController : MonoBehaviour
     {
         elapsedTime += Time.deltaTime;
 
-        if(Input.GetKey(KeyCode.Space) && elapsedTime > 1.0f){
-            // Instantiate(arrow, tf.position, tf.rotation);
-            elapsedTime = 0;
-        }
         // Get the horizontal and vertical axis.
         // By default they are mapped to the arrow keys.
         // The value is in the range -1 to 1
@@ -44,26 +40,5 @@ public class FoxController : MonoBehaviour
 		rotation.x += -Input.GetAxis ("Mouse Y");
         rotation.x = Mathf.Clamp(rotation.x, -10.0f, 10.0f);
 		transform.eulerAngles = (Vector2)rotation * horizontalSpeed;
-
-        // if(bc.)
-        // if (Input.GetKeyDown("d")){
-		// 	tf.position += Vector3.right * horizontalSpeed * Time.deltaTime;
-		// }
-		// if (Input.GetKeyDown("a")){
-		// 	tf.position += Vector3.left* horizontalSpeed * Time.deltaTime;
-		// }
-		// if (Input.GetKeyDown("w")){
-		// 	tf.position += Vector3.forward * horizontalSpeed * Time.deltaTime;
-		// }
-		// if (Input.GetKeyDown("s")){
-		// 	tf.position += Vector3.back* horizontalSpeed * Time.deltaTime;
-		// }        
-        // float translation = Input.GetAxis("Vertical") * verticalSpeed;
-        // float rotation = Input.GetAxis("Mouse X") * horizontalSpeed;
-        // translation *= Time.deltaTime;
-        // rotation *= Time.deltaTime;
-
-        // transform.Translate(0, 0, translation);
-        // transform.Rotate(0,rotation,0);
     }
 }
