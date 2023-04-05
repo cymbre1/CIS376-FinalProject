@@ -13,6 +13,8 @@ public class FoxController : MonoBehaviour
     protected BoxCollider bc;
     protected Vector2 rotation;
     public bool hidden = false;
+    protected Animator anim;
+    protected Vector3 previousPos;
 
 
     // Start is called before the first frame update
@@ -20,11 +22,18 @@ public class FoxController : MonoBehaviour
     {
         tf = GetComponent<Transform>();
         bc = GetComponent<BoxCollider>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        foreach(AnimatorControllerParameter parameter in anim.parameters) {            
+            anim.SetBool(parameter.name, false);            
+        }
+
+        // anim.SetBool("WalkForward", true);
+        
         elapsedTime += Time.deltaTime;
 
         // Get the horizontal and vertical axis.
@@ -34,12 +43,29 @@ public class FoxController : MonoBehaviour
 
         // Make it move 10 meters per second instead of 10 meters per frame...
         translation *= Time.deltaTime;
-
+        
         // Move translation along the object's z-axis
         transform.Translate(0, 0, translation);
 
-        rotation.y += Input.GetAxis ("Mouse X");
-		rotation.x += -Input.GetAxis ("Mouse Y");
+        // Rigidbody player = GetComponent<Rigidbody>();
+        // Vector3 vel = player.velocity;
+        
+        print("WHAT THE FUCK");
+        print(tf.hasChanged);
+        // print(previousPos);
+        // if(tf.position != previousPos) {
+        //     print("I'm moving");
+        //     if(Input.GetAxis("Mouse X") > 0) {
+        //         anim.SetBool("WalkLeft", true);
+        //     } else if(Input.GetAxis("Mouse X") < 0) {
+        //         anim.SetBool("WalkRight", true);
+        //     } else {
+        //         anim.SetBool("WalkForward", true);
+        //     }
+        // } 
+
+        rotation.y += Input.GetAxis("Mouse X");
+		rotation.x += -Input.GetAxis("Mouse Y");
         rotation.x = Mathf.Clamp(rotation.x, -10.0f, 10.0f);
 		transform.eulerAngles = (Vector2)rotation * horizontalSpeed;
     }
