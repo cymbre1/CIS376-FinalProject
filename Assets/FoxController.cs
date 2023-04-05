@@ -50,24 +50,36 @@ public class FoxController : MonoBehaviour
         // Rigidbody player = GetComponent<Rigidbody>();
         // Vector3 vel = player.velocity;
         
-        print("WHAT THE FUCK");
-        print(tf.hasChanged);
+        // print(Input.GetAxis("Vertical"));
         // print(previousPos);
-        // if(tf.position != previousPos) {
-        //     print("I'm moving");
-        //     if(Input.GetAxis("Mouse X") > 0) {
-        //         anim.SetBool("WalkLeft", true);
-        //     } else if(Input.GetAxis("Mouse X") < 0) {
-        //         anim.SetBool("WalkRight", true);
-        //     } else {
-        //         anim.SetBool("WalkForward", true);
-        //     }
-        // } 
+        if(Input.GetAxis("Vertical") > 0.02 || Input.GetAxis("Vertical") < -0.02) {
+            print(Input.GetAxis("Mouse X"));
+            if(Input.GetAxis("Mouse X") > 0) {
+                anim.SetBool("WalkRight", true);
+            } else if(Input.GetAxis("Mouse X") < 0) {
+                anim.SetBool("WalkLeft", true);
+            } else {
+                anim.SetBool("WalkForward", true);
+            }
+        } else {
+            if(Input.GetAxis("Mouse X") > 0) {
+                anim.SetBool("WalkRight", true);
+            } else if(Input.GetAxis("Mouse X") < 0) {
+                anim.SetBool("WalkLeft", true);
+            } else {
+                // anim.SetBool("WalkForward", true);
+                anim.SetBool("Stop", true);
+                print("stopped");
+            }
+            
+        }
 
         rotation.y += Input.GetAxis("Mouse X");
-		rotation.x += -Input.GetAxis("Mouse Y");
+		// rotation.x += -Input.GetAxis("Mouse Y");
         rotation.x = Mathf.Clamp(rotation.x, -10.0f, 10.0f);
 		transform.eulerAngles = (Vector2)rotation * horizontalSpeed;
+
+        previousPos = transform.position;
     }
 
     void OnTriggerEnter(Collider col) {
