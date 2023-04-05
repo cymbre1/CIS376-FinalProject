@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class FoxController : MonoBehaviour
 {
-    float horizontalSpeed = 10.0f;
-    float verticalSpeed = 20.0f;
+    float horizontalSpeed = 5.0f;
+    float verticalSpeed = 10.0f;
 
     protected float elapsedTime = 0;
     protected Transform tf;
     protected BoxCollider bc;
     protected Vector2 rotation;
+    public bool hidden = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,5 +42,23 @@ public class FoxController : MonoBehaviour
 		rotation.x += -Input.GetAxis ("Mouse Y");
         rotation.x = Mathf.Clamp(rotation.x, -10.0f, 10.0f);
 		transform.eulerAngles = (Vector2)rotation * horizontalSpeed;
+    }
+
+    void OnTriggerEnter(Collider col) {
+        if(col.gameObject.tag == "RedBush") {
+            hidden = true;
+            print("What does the fox say");
+        } 
+
+        // print(col.gameObject.tag);
+
+
+    }
+
+    void OnTriggerExit(Collider col) {
+        if(col.gameObject.tag == "RedBush") {
+            hidden = false;
+            print("DINGDINGDINGDINGDINGDINGDINGDINGDING");
+        } 
     }
 }
