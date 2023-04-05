@@ -53,25 +53,18 @@ public class FoxController : MonoBehaviour
         // print(Input.GetAxis("Vertical"));
         // print(previousPos);
         if(Input.GetAxis("Vertical") > 0.02 || Input.GetAxis("Vertical") < -0.02) {
-            print(Input.GetAxis("Mouse X"));
-            if(Input.GetAxis("Mouse X") > 0) {
+            // print(Input.GetAxis("Mouse X"));
+            if(Input.GetAxis("Mouse X") > 0.3) {
                 anim.SetBool("WalkRight", true);
-            } else if(Input.GetAxis("Mouse X") < 0) {
+            } else if(Input.GetAxis("Mouse X") < -0.3) {
                 anim.SetBool("WalkLeft", true);
             } else {
+                print("WALk");
                 anim.SetBool("WalkForward", true);
             }
         } else {
-            if(Input.GetAxis("Mouse X") > 0) {
-                anim.SetBool("WalkRight", true);
-            } else if(Input.GetAxis("Mouse X") < 0) {
-                anim.SetBool("WalkLeft", true);
-            } else {
-                // anim.SetBool("WalkForward", true);
-                anim.SetBool("Stop", true);
-                print("stopped");
-            }
-            
+            anim.SetBool("Stop", true);
+            print("stopped");            
         }
 
         rotation.y += Input.GetAxis("Mouse X");
