@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 // using 
 
 public class FoxController : MonoBehaviour
@@ -16,16 +17,16 @@ public class FoxController : MonoBehaviour
     protected Animator anim;
     protected Vector3 previousPos;
 
-    bool apple = false;
-    bool banana = false;
-    bool carrot = false;
-    bool onion = false;
-    bool garlic = false;
-    bool egg = false;
-    bool ham = false;
-    bool cake = false;
-    bool pumpkin = false;
-    bool tomato = false;
+    public bool apple = false;
+    public bool banana = false;
+    public bool carrot = false;
+    public bool onion = false;
+    public bool garlic = false;
+    public bool egg = false;
+    public bool ham = false;
+    public bool cake = false;
+    public bool pumpkin = false;
+    public bool tomato = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,8 +43,6 @@ public class FoxController : MonoBehaviour
             anim.SetBool(parameter.name, false);            
         }
 
-        // anim.SetBool("WalkForward", true);
-        
         elapsedTime += Time.deltaTime;
 
         // Get the horizontal and vertical axis.
@@ -57,13 +56,7 @@ public class FoxController : MonoBehaviour
         // Move translation along the object's z-axis
         transform.Translate(0, 0, translation);
 
-        // Rigidbody player = GetComponent<Rigidbody>();
-        // Vector3 vel = player.velocity;
-        
-        // print(Input.GetAxis("Vertical"));
-        // print(previousPos);
         if(Input.GetAxis("Vertical") > 0.02 || Input.GetAxis("Vertical") < -0.02) {
-            // print(Input.GetAxis("Mouse X"));
             if(Input.GetAxis("Mouse X") > 0.3) {
                 anim.SetBool("WalkRight", true);
             } else if(Input.GetAxis("Mouse X") < -0.3) {
@@ -78,7 +71,6 @@ public class FoxController : MonoBehaviour
         }
 
         rotation.y += Input.GetAxis("Mouse X");
-		// rotation.x += -Input.GetAxis("Mouse Y");
         rotation.x = Mathf.Clamp(rotation.x, -10.0f, 10.0f);
 		transform.eulerAngles = (Vector2)rotation * horizontalSpeed;
 
