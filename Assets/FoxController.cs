@@ -16,6 +16,16 @@ public class FoxController : MonoBehaviour
     protected Animator anim;
     protected Vector3 previousPos;
 
+    bool apple = false;
+    bool banana = false;
+    bool carrot = false;
+    bool onion = false;
+    bool garlic = false;
+    bool egg = false;
+    bool ham = false;
+    bool cake = false;
+    bool pumpkin = false;
+    bool tomato = false;
 
     // Start is called before the first frame update
     void Start()
@@ -81,7 +91,31 @@ public class FoxController : MonoBehaviour
             print("What does the fox say");
         } 
 
-        // print(col.gameObject.tag);
+        if(col.gameObject.tag == "Collectible") {
+            if(col.gameObject.name == "apple") {
+                apple = true;
+            } else if(col.gameObject.name == "banana") {
+                banana = true;
+            } else if(col.gameObject.name == "carrot") {
+                carrot = true;
+            } else if(col.gameObject.name == "onion") {
+                onion = true;
+            } else if(col.gameObject.name == "garlic") {
+                garlic = true;
+            } else if(col.gameObject.name == "egg") {
+                egg = true;
+            } else if(col.gameObject.name == "ham") {
+                ham = true;
+            } else if(col.gameObject.name == "cake") {
+                cake = true;
+            } else if(col.gameObject.name == "pumpkin") {
+                pumpkin = true;
+            } else if(col.gameObject.name == "tomato") {
+                tomato = true;
+            }
+
+            Destroy(col.gameObject);
+        }
 
 
     }
