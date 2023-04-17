@@ -12,7 +12,6 @@ public class PrintController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print(myName);
         image = GetComponent<RawImage>();
         image.enabled = false;
         GameObject fox = GameObject.Find("Fox");

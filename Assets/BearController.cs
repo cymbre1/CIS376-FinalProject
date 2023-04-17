@@ -12,10 +12,6 @@ public class BearController : MonoBehaviour
     protected NavMeshAgent agent;
     protected FoxController fc;
     protected Vector3 ogPos;
-    // public bool hidden = false;
-
-    // protected GameController gc;
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,22 +21,55 @@ public class BearController : MonoBehaviour
         GameObject f = GameObject.Find("Fox");
         fc = f.GetComponent<FoxController>();
         target = GameObject.Find("Fox").transform;
-        // fc = GetComponent<FoxController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(destination, target.position) > 1.0f)
+        foreach(AnimatorControllerParameter parameter in anim.parameters) {            
+            anim.SetBool(parameter.name, false);            
+        }
+
+
+        if(Vector3.Distance(destination, target.position) > 1.0f )
         {
-            if( !fc.hidden ) {
+            if(!fc.hidden && (Vector3.Distance(target.position, transform.position) < 50.0f)) {
+                anim.SetBool("RunForward", true);
                 destination = target.position;
                 agent.destination = destination;
-            } else {
+                agent.speed = 10;
+            }
+            if( !fc.hidden && (Vector3.Distance(target.position, transform.position) < 100.0f)) 
+            {
+                anim.SetBool("WalkForward", true);
+                destination = target.position;
+                agent.destination = destination;
+            } 
+            else 
+            {
+                anim.SetBool("Idle", true);
                 agent.destination = ogPos;
-                print("Sneak");
             }
         }
 
+    }
+
+    // private void ChangeDirection() {
+    //      float angle = Random.Range(0f, 360f);
+    //      Quaternion quat = Quaternion.AngleAxis(angle, Vector3.forward);
+    //      Vector3 newUp = quat * Vector3.up;
+    //      newUp.z = 0;
+    //      newUp.Normalize();
+    //      transform.up = newUp;
+    //      timeToChangeDirection = 1.5f;
+    //  }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.tag == "Player") {
+            print("GAME OVER");
+            // Destroy(col.gameObject);
+            // TODO add the code that actually ends the game lol
+        }
     }
 }
