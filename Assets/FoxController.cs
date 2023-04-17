@@ -16,6 +16,7 @@ public class FoxController : MonoBehaviour
     public bool hidden = false;
     protected Animator anim;
     protected Vector3 previousPos;
+    protected TerrainData terrain;
 
     public bool apple = false;
     public bool banana = false;
@@ -34,6 +35,7 @@ public class FoxController : MonoBehaviour
         tf = GetComponent<Transform>();
         bc = GetComponent<BoxCollider>();
         anim = GetComponent<Animator>();
+        terrain = Terrain.activeTerrain.terrainData;
     }
 
     // Update is called once per frame
@@ -73,6 +75,26 @@ public class FoxController : MonoBehaviour
         rotation.y += Input.GetAxis("Mouse X");
         rotation.x = Mathf.Clamp(rotation.x, -10.0f, 10.0f);
 		transform.eulerAngles = (Vector2)rotation * horizontalSpeed;
+
+        int treeCount = terrain.treeInstanceCount;
+        for(int i =0; i< treeCount; i ++){
+            TreeInstance tree = terrain.treeInstances[i];
+            if(tree.prototypeIndex == 4){
+                var treePos = tree.position;
+                var xTree = treePos.x * terrain.size.x;
+                var yTree = treePos.y * terrain.size.y;
+                var zTree = treePos.z * terrain.size.z;
+                treePos = new Vector3(xTree, yTree, zTree);
+
+                if (Vector3.Distance(transform.position, treePos) <= 2.0f){
+                    hidden = true;
+                    break;
+                }
+                else{
+                    hidden = false;
+                }
+            }
+        }
 
         previousPos = transform.position;
     }

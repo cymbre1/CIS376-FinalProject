@@ -5,28 +5,36 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private Terrain terrain;
-    protected Transform fox;
+    protected GameObject fox;
     // Start is called before the first frame update
     void Start()
     {
         terrain = Terrain.activeTerrain;
-        fox = GameObject.Find("Fox").transform;
+        fox = GameObject.Find("Fox");
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Debug.Log(fox.position.normalized);
-        int treeCount = terrain.terrainData.treeInstanceCount;
-        for (int i = 0; i < treeCount; i ++){
-            TreeInstance tree = terrain.terrainData.treeInstances[i];
-            Debug.Log(Vector3.Distance(fox.position, tree.position) + " " + tree.prototypeIndex);
-            if(Vector3.Distance(fox.position, tree.position) <= 1078.0f){
-                Debug.Log(tree.prototypeIndex.ToString());
-                if (tree.prototypeIndex == 4){
-                    Debug.Log("Red Bush");
-                }
-            }
-        }
+        // int treeCount = terrain.terrainData.treeInstanceCount;
+        // for (int i = 0; i < treeCount; i ++){
+        //     TreeInstance tree = terrain.terrainData.treeInstances[i];
+
+        //     if (tree.prototypeIndex == 4){
+        //         var treePos = tree.position;
+        //         var xTree = treePos.x * terrain.terrainData.size.x;
+        //         var zTree = treePos.z * terrain.terrainData.size.z;
+        //         var yTree = treePos.y * terrain.terrainData.size.y;
+        //         treePos = new Vector3(xTree, yTree, zTree);
+
+        //         if(Vector3.Distance(fox.transform.position, treePos) <= 2.0f){
+        //             fox.hidden = True;
+        //             break;
+        //         }
+        //         else{
+        //             fox.hidden = False;
+        //         }
+        //     }
+        // }
     }
 }
