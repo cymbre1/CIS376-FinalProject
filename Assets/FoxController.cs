@@ -35,6 +35,9 @@ public class FoxController : MonoBehaviour
     protected AudioClip mainTheme;
     protected AudioClip mainThemeIntro;
     protected AudioClip mainThemeReprise;
+    protected AudioClip footsteps;
+
+    protected float duration;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +53,9 @@ public class FoxController : MonoBehaviour
         mainTheme = Resources.Load("InTheWoodsTrimmed") as AudioClip;
         mainThemeIntro = Resources.Load("InTheWoodsIntroTrimmed") as AudioClip;
         mainThemeReprise = Resources.Load("InTheWoodsRepriseTrimmed") as AudioClip;
+        footsteps = Resources.Load("Footstep_29") as AudioClip;
+
+        duration = 0;
 
         StartMainTheme();        
     }
@@ -75,6 +81,12 @@ public class FoxController : MonoBehaviour
         transform.Translate(0, 0, translation);
 
         if(Input.GetAxis("Vertical") > 0.02 || Input.GetAxis("Vertical") < -0.02) {
+            if(duration > footsteps.length / 2) {
+                music.PlayOneShot(footsteps, 0.02f);
+                duration = 0;
+            } else {
+                duration += Time.deltaTime;
+            }
             if(Input.GetAxis("Mouse X") > 0.3) {
                 anim.SetBool("WalkRight", true);
             } else if(Input.GetAxis("Mouse X") < -0.3) {
