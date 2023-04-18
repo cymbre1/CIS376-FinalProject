@@ -161,6 +161,7 @@ public class FoxController : MonoBehaviour
             if(apple && banana && cake && carrot && egg && onion && garlic && ham && pumpkin && tomato) {
                 music.Stop();
                 music.clip = mainThemeReprise;
+                music.loop = false;
                 music.Play();
             }
         }

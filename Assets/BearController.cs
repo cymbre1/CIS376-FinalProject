@@ -13,15 +13,23 @@ public class BearController : MonoBehaviour
     protected FoxController fc;
     protected Vector3 ogPos;
     protected bool bearMusic = false;
+    protected AudioSource sounds;
+
+    protected AudioClip endGrowl;
     // Start is called before the first frame update
     void Start()
     {
         ogPos = transform.position;
+
+        GameObject f = GameObject.Find("Fox");
+        target = f.transform;
+
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        GameObject f = GameObject.Find("Fox");
         fc = f.GetComponent<FoxController>();
-        target = GameObject.Find("Fox").transform;
+        sounds = GetComponent<AudioSource>();        
+        
+        endGrowl = Resources.Load("Bear Growl #1") as AudioClip;
     }
 
     // Update is called once per frame
@@ -77,6 +85,7 @@ public class BearController : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.tag == "Player") {
+            sounds.PlayOneShot(endGrowl, 0.9f);
             print("GAME OVER");
             // Destroy(col.gameObject);
             // TODO add the code that actually ends the game lol
