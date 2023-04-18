@@ -15,7 +15,10 @@ public class BearController : MonoBehaviour
     protected bool bearMusic = false;
     protected AudioSource sounds;
 
+    protected float timeSinceGrowl = 0;
+
     protected AudioClip endGrowl;
+    protected AudioClip bearLunch;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,8 @@ public class BearController : MonoBehaviour
         ChangeDirection();        
         
         endGrowl = Resources.Load("Bear Growl 1") as AudioClip;
+        bearLunch = Resources.Load("Lunch") as AudioClip;
+
     }
 
     // Update is called once per frame
@@ -73,6 +78,16 @@ public class BearController : MonoBehaviour
                 }
             }
         }
+
+        print(timeSinceGrowl);
+        if(timeSinceGrowl == 300) {
+            // sounds.PlayOneShot(endGrowl, 0.9f);
+
+            sounds.PlayOneShot(bearLunch, 0.5f);
+            timeSinceGrowl = 0;
+        }
+
+        timeSinceGrowl += 1;
 
     }
 
