@@ -12,6 +12,7 @@ public class BearController : MonoBehaviour
     protected NavMeshAgent agent;
     protected FoxController fc;
     protected Vector3 ogPos;
+    protected bool bearMusic = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,22 +34,31 @@ public class BearController : MonoBehaviour
 
         if(Vector3.Distance(destination, target.position) > 1.0f )
         {
-            if(!fc.hidden && (Vector3.Distance(target.position, transform.position) < 50.0f)) {
-                anim.SetBool("RunForward", true);
+            if(!fc.hidden && (Vector3.Distance(target.position, transform.position) < 75.0f)) {
+                anim.SetBool("Run Forward", true);
                 destination = target.position;
                 agent.destination = destination;
                 agent.speed = 10;
             }
-            if( !fc.hidden && (Vector3.Distance(target.position, transform.position) < 100.0f)) 
+            if( !fc.hidden && (Vector3.Distance(target.position, transform.position) < 150.0f)) 
             {
                 anim.SetBool("WalkForward", true);
                 destination = target.position;
                 agent.destination = destination;
+                if(!bearMusic) {
+                    fc.StartBearMusic();
+                    bearMusic = true;
+                }
+                agent.speed = 5;
             } 
             else 
             {
-                anim.SetBool("Idle", true);
+                anim.SetBool("WalkForward", true);
                 agent.destination = ogPos;
+                if(bearMusic) {
+                    fc.StartMainTheme();
+                    bearMusic = false;
+                }
             }
         }
 

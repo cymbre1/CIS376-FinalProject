@@ -17,6 +17,7 @@ public class FoxController : MonoBehaviour
     protected Animator anim;
     protected Vector3 previousPos;
     protected TerrainData terrain;
+    protected AudioSource music;
 
     public bool apple = false;
     public bool banana = false;
@@ -29,13 +30,28 @@ public class FoxController : MonoBehaviour
     public bool pumpkin = false;
     public bool tomato = false;
 
+    protected AudioClip theBearMusic;
+    protected AudioClip theBearIntro;
+    protected AudioClip mainTheme;
+    protected AudioClip mainThemeIntro;
+    protected AudioClip mainThemeReprise;
+
     // Start is called before the first frame update
     void Start()
     {
         tf = GetComponent<Transform>();
         bc = GetComponent<BoxCollider>();
         anim = GetComponent<Animator>();
+        music = GetComponent<AudioSource>();
         terrain = Terrain.activeTerrain.terrainData;
+
+        theBearMusic = Resources.Load("TheBearTrimmed") as AudioClip;
+        theBearIntro = Resources.Load("TheBearIntroTrimmed") as AudioClip;
+        mainTheme = Resources.Load("InTheWoodsTrimmed") as AudioClip;
+        mainThemeIntro = Resources.Load("InTheWoodsIntroTrimmed") as AudioClip;
+        mainThemeReprise = Resources.Load("InTheWoodsRepriseTrimmed") as AudioClip;
+
+        StartMainTheme();        
     }
 
     // Update is called once per frame
@@ -64,12 +80,10 @@ public class FoxController : MonoBehaviour
             } else if(Input.GetAxis("Mouse X") < -0.3) {
                 anim.SetBool("WalkLeft", true);
             } else {
-                print("WALk");
                 anim.SetBool("WalkForward", true);
             }
         } else {
             anim.SetBool("Stop", true);
-            print("stopped");            
         }
 
         rotation.y += Input.GetAxis("Mouse X");
@@ -102,7 +116,6 @@ public class FoxController : MonoBehaviour
     void OnTriggerEnter(Collider col) {
         if(col.gameObject.tag == "RedBush") {
             hidden = true;
-            print("What does the fox say");
         } 
 
         if(col.gameObject.tag == "Collectible") {
@@ -131,13 +144,52 @@ public class FoxController : MonoBehaviour
             Destroy(col.gameObject);
         }
 
+        if(col.gameObject.tag == "Finish") {
+            print(apple);
+            if(apple && banana && cake && carrot && egg && onion && garlic && ham && pumpkin && tomato) {
+                music.Stop();
+                music.clip = mainThemeReprise;
+                music.Play();
+            }
+        }
+
 
     }
 
     void OnTriggerExit(Collider col) {
         if(col.gameObject.tag == "RedBush") {
             hidden = false;
-            print("DINGDINGDINGDINGDINGDINGDINGDINGDING");
         } 
+    }
+
+    public void StartBearMusic() {
+        music.Stop();
+        music.clip = theBearIntro;
+        music.Play();
+        StartCoroutine(BearMusicContinue(music.clip.length));
+    }
+
+    IEnumerator BearMusicContinue(float secs) {
+        yield return new WaitForSeconds(secs);
+        music.Stop();
+        music.clip = theBearMusic;
+        music.loop = true;
+        music.Play();
+    }
+
+    public void StartMainTheme() {
+        music.Stop();
+        music.clip = mainThemeIntro;
+        music.Play();
+        StartCoroutine(MainThemeContinue(music.clip.length));
+
+    }
+
+    IEnumerator MainThemeContinue(float secs) {
+        yield return new WaitForSeconds(secs);
+        // music.Stop();
+        music.clip = mainTheme;
+        music.loop = true;
+        music.Play();
     }
 }
