@@ -27,7 +27,9 @@ public class BearController : MonoBehaviour
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         fc = f.GetComponent<FoxController>();
-        sounds = GetComponent<AudioSource>();        
+        sounds = GetComponent<AudioSource>();
+
+        ChangeDirection();        
         
         endGrowl = Resources.Load("Bear Growl #1") as AudioClip;
     }
@@ -62,7 +64,9 @@ public class BearController : MonoBehaviour
             else 
             {
                 anim.SetBool("WalkForward", true);
-                agent.destination = ogPos;
+                if(bearMusic || agent.remainingDistance <= 1.0f){
+                    ChangeDirection();
+                }
                 if(bearMusic) {
                     fc.StartMainTheme();
                     bearMusic = false;
@@ -72,15 +76,13 @@ public class BearController : MonoBehaviour
 
     }
 
-    // private void ChangeDirection() {
-    //      float angle = Random.Range(0f, 360f);
-    //      Quaternion quat = Quaternion.AngleAxis(angle, Vector3.forward);
-    //      Vector3 newUp = quat * Vector3.up;
-    //      newUp.z = 0;
-    //      newUp.Normalize();
-    //      transform.up = newUp;
-    //      timeToChangeDirection = 1.5f;
-    //  }
+    private void ChangeDirection() {
+        Vector3 randomDirection = Random.insideUnitSphere * 200;
+        randomDirection += transform.position;
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDirection, out hit, 200, 1);
+        agent.destination = hit.position;
+     }
 
     void OnCollisionEnter(Collision col)
     {

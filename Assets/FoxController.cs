@@ -112,7 +112,7 @@ public class FoxController : MonoBehaviour
                 var zTree = treePos.z * terrain.size.z;
                 treePos = new Vector3(xTree, yTree, zTree);
 
-                if (Vector3.Distance(transform.position, treePos) <= 2.0f){
+                if (Vector3.Distance(transform.position, treePos) <= 2.5f){
                     hidden = true;
                     break;
                 }
