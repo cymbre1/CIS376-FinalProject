@@ -36,6 +36,7 @@ public class FoxController : MonoBehaviour
     protected AudioClip mainThemeIntro;
     protected AudioClip mainThemeReprise;
     protected AudioClip footsteps;
+    protected AudioClip collect;
 
     protected float duration;
 
@@ -54,6 +55,7 @@ public class FoxController : MonoBehaviour
         mainThemeIntro = Resources.Load("InTheWoodsIntroTrimmed") as AudioClip;
         mainThemeReprise = Resources.Load("InTheWoodsRepriseTrimmed") as AudioClip;
         footsteps = Resources.Load("Footstep_29") as AudioClip;
+        collect = Resources.Load("collect2") as AudioClip;
 
         duration = 0;
 
@@ -153,6 +155,7 @@ public class FoxController : MonoBehaviour
                 tomato = true;
             }
 
+            music.PlayOneShot(collect, 0.5f);
             Destroy(col.gameObject);
         }
 

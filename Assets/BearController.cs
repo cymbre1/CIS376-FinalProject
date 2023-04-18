@@ -87,9 +87,7 @@ public class BearController : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.tag == "Player") {
-            if(endGrowl){
-                sounds.PlayOneShot(endGrowl, 0.9f);
-            }
+            sounds.PlayOneShot(endGrowl, 0.9f);
             Debug.Log("Player hit");
             print("GAME OVER");
             // Destroy(col.gameObject);
