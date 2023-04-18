@@ -31,7 +31,7 @@ public class BearController : MonoBehaviour
 
         ChangeDirection();        
         
-        endGrowl = Resources.Load("Bear Growl #1") as AudioClip;
+        endGrowl = Resources.Load("Bear Growl 1") as AudioClip;
     }
 
     // Update is called once per frame
@@ -87,7 +87,10 @@ public class BearController : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.tag == "Player") {
-            sounds.PlayOneShot(endGrowl, 0.9f);
+            if(endGrowl){
+                sounds.PlayOneShot(endGrowl, 0.9f);
+            }
+            Debug.Log("Player hit");
             print("GAME OVER");
             // Destroy(col.gameObject);
             // TODO add the code that actually ends the game lol
