@@ -88,10 +88,7 @@ public class BearController : MonoBehaviour
     {
         if(col.gameObject.tag == "Player") {
             sounds.PlayOneShot(endGrowl, 0.9f);
-            Debug.Log("Player hit");
-            print("GAME OVER");
-            // Destroy(col.gameObject);
-            // TODO add the code that actually ends the game lol
+            FindObjectOfType<GameManager>().ChangeScene("End_Scene");
         }
     }
 }
