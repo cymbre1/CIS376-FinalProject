@@ -37,6 +37,7 @@ public class FoxController : MonoBehaviour
     protected AudioClip mainThemeReprise;
     protected AudioClip footsteps;
     protected AudioClip collect;
+    protected bool finished;
 
     protected float duration;
 
@@ -80,21 +81,26 @@ public class FoxController : MonoBehaviour
         translation *= Time.deltaTime;
         
         // Move translation along the object's z-axis
-        transform.Translate(0, 0, translation);
+        if(!finished)
+        {
+            transform.Translate(0, 0, translation);
 
-        if(Input.GetAxis("Vertical") > 0.02 || Input.GetAxis("Vertical") < -0.02) {
-            if(duration > footsteps.length / 2) {
-                music.PlayOneShot(footsteps, 0.02f);
-                duration = 0;
+            if(Input.GetAxis("Vertical") > 0.02 || Input.GetAxis("Vertical") < -0.02) {
+                if(duration > footsteps.length / 2) {
+                    music.PlayOneShot(footsteps, 0.02f);
+                    duration = 0;
+                } else {
+                    duration += Time.deltaTime;
+                }
+                if(Input.GetAxis("Mouse X") > 0.3) {
+                    anim.SetBool("WalkRight", true);
+                } else if(Input.GetAxis("Mouse X") < -0.3) {
+                    anim.SetBool("WalkLeft", true);
+                } else {
+                    anim.SetBool("WalkForward", true);
+                }
             } else {
-                duration += Time.deltaTime;
-            }
-            if(Input.GetAxis("Mouse X") > 0.3) {
-                anim.SetBool("WalkRight", true);
-            } else if(Input.GetAxis("Mouse X") < -0.3) {
-                anim.SetBool("WalkLeft", true);
-            } else {
-                anim.SetBool("WalkForward", true);
+                anim.SetBool("Stop", true);
             }
         } else {
             anim.SetBool("Stop", true);
@@ -166,10 +172,17 @@ public class FoxController : MonoBehaviour
                 music.clip = mainThemeReprise;
                 music.loop = false;
                 music.Play();
+                finished = true;
+                StartCoroutine(triggerEnd(music.clip.length));
             }
         }
 
 
+    }
+
+    IEnumerator triggerEnd(float secs) {
+        yield return new WaitForSeconds(secs);
+        FindObjectOfType<GameManager>().ChangeScene("End_Scene"); 
     }
 
     void OnTriggerExit(Collider col) {
