@@ -184,15 +184,15 @@ MonoBehaviour:
   m_text: Text that's a placeholder~~~~  I'm writing a paragraph to make it more
     legible that I changed the layout on other computers
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -294,10 +294,10 @@ RectTransform:
   m_Father: {fileID: 1388288301}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 100, y: 66}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0.54724735, y: 0.035745125}
+  m_AnchorMax: {x: 0.69677424, y: 0.13974513}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &199828134
 MonoBehaviour:
@@ -320,11 +320,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_NormalColor: {r: 1, g: 0.92941177, b: 0.7490196, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.95686275, b: 0.84313726, a: 1}
+    m_PressedColor: {r: 0.83137256, g: 0.7411765, b: 0.5137255, a: 1}
+    m_SelectedColor: {r: 1, g: 0.95686275, b: 0.84313726, a: 1}
+    m_DisabledColor: {r: 0.83137256, g: 0.7411765, b: 0.5137255, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -428,10 +428,10 @@ RectTransform:
   m_Father: {fileID: 1388288301}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -100, y: 66}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0.30422583, y: 0.035745125}
+  m_AnchorMax: {x: 0.45600003, y: 0.13974513}
+  m_AnchoredPosition: {x: 0, y: 1}
+  m_SizeDelta: {x: 0, y: -2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &450713626
 MonoBehaviour:
@@ -882,8 +882,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Exit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1017,8 +1017,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Start Game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
