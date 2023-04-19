@@ -103,7 +103,12 @@ public class BearController : MonoBehaviour
     {
         if(col.gameObject.tag == "Player") {
             sounds.PlayOneShot(endGrowl, 0.9f);
-            FindObjectOfType<GameManager>().ChangeScene("End_Scene");
+            StartCoroutine(triggerGameOver(endGrowl.length));
         }
+    }
+
+    IEnumerator triggerGameOver(float secs) {
+        yield return new WaitForSeconds(secs);
+        FindObjectOfType<GameManager>().ChangeScene("End_Scene_Died");
     }
 }
