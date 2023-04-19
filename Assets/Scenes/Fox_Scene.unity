@@ -372,7 +372,7 @@ MonoBehaviour:
   m_text: Garlic
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
-  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: -896596123744820251, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -840,7 +840,7 @@ MonoBehaviour:
   m_text: Pumpkin
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
-  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: -896596123744820251, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -864,7 +864,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33
+  m_fontSize: 31.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2493,7 +2493,7 @@ MonoBehaviour:
   m_text: Egg
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
-  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: -896596123744820251, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3265,7 +3265,7 @@ MonoBehaviour:
   m_text: Apple
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
-  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: -896596123744820251, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4908,7 +4908,7 @@ MonoBehaviour:
   m_text: Carrot
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
-  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: -896596123744820251, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5350,7 +5350,7 @@ MonoBehaviour:
   m_text: Onion
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
-  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: -896596123744820251, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6118,7 +6118,7 @@ MonoBehaviour:
   m_text: Tomato
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
-  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: -896596123744820251, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7710,7 +7710,7 @@ MonoBehaviour:
   m_text: Ham
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
-  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: -896596123744820251, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7845,7 +7845,7 @@ MonoBehaviour:
   m_text: Banana
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
-  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: -896596123744820251, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7869,7 +7869,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.8
+  m_fontSize: 30.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9651,7 +9651,7 @@ MonoBehaviour:
   m_text: Cake
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
-  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: -896596123744820251, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
