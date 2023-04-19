@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PrintController : MonoBehaviour
+public class PrintScript : MonoBehaviour
 {
     FoxController fc;
-    RawImage image;
+    Image image;
     public string myName;
 
     // Start is called before the first frame update
     void Start()
     {
-        image = GetComponent<RawImage>();
+        image = GetComponent<Image>();
         image.enabled = false;
         GameObject fox = GameObject.Find("Fox");
 
