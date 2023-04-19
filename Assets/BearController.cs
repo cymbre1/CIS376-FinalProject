@@ -50,10 +50,10 @@ public class BearController : MonoBehaviour
         if(Vector3.Distance(destination, target.position) > 1.0f )
         {
             if(!fc.hidden && (Vector3.Distance(target.position, transform.position) < 75.0f)) {
-                anim.SetBool("Run Forward", true);
+                anim.SetBool("WalkForward", true);
                 destination = target.position;
                 agent.destination = destination;
-                agent.speed = 10;
+                agent.speed = 15;
             }
             if( !fc.hidden && (Vector3.Distance(target.position, transform.position) < 150.0f)) 
             {
@@ -64,7 +64,7 @@ public class BearController : MonoBehaviour
                     fc.StartBearMusic();
                     bearMusic = true;
                 }
-                agent.speed = 5;
+                agent.speed = 10;
             } 
             else 
             {
