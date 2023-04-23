@@ -57,6 +57,8 @@ public class FoxController : MonoBehaviour
         mainThemeReprise = Resources.Load("InTheWoodsRepriseTrimmed") as AudioClip;
         footsteps = Resources.Load("Footstep_29") as AudioClip;
         collect = Resources.Load("collect2") as AudioClip;
+        
+        rotation.y = 95;
 
         duration = 0;
 

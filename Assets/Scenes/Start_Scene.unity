@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.2581687, g: 0.5622766, b: 0.55641997, a: 1}
+  m_IndirectSpecularColor: {r: 0.25834215, g: 0.5624254, b: 0.55613744, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -181,11 +181,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Text that's a placeholder~~~~  I'm writing a paragraph to make it more
-    legible that I changed the layout on other computers
+  m_text: 'Frankie,
+
+    I''m headed to your grandmothers to help her weed her vegetable
+    garden.  While I''m gone, please get the groceries.  I''ve left a list on the
+    fridge.  Remember to be careful of bears!  They can smell you, but the red bushes
+    should be able to hide you.  I''ll be back by the time you get home.
+
+    Love,
+    Mom '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
-  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: -896596123744820251, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -209,10 +216,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 52.9
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -883,7 +890,7 @@ MonoBehaviour:
   m_text: Exit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
-  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: -896596123744820251, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1015,10 +1022,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start Game
+  m_text: Get Groceries
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
-  m_sharedMaterial: {fileID: 2829269625807706603, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
+  m_sharedMaterial: {fileID: -896596123744820251, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

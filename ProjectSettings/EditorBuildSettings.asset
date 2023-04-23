@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Fox_Scene.unity
     guid: ee69267fc0e7a664195ed89bf963397e
+  - enabled: 1
+    path: Assets/Scenes/End_Scene_Died.unity
+    guid: 4c59f0968c16f4badab3b8e7e0dca340
   m_configObjects: {}
