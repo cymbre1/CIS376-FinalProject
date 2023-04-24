@@ -19,7 +19,7 @@ public class BearController : MonoBehaviour
     protected AudioClip endGrowl;
     protected AudioClip bearLunch;
 
-    protected bool chasing;
+    public bool chasing;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +55,7 @@ public class BearController : MonoBehaviour
                 if(!fc.hidden) {
                     print("CHASING");
                     chasing = true;
-                    fc.chased = true;
+                    // fc.chased = true;
                     anim.SetBool("WalkForward", true);
                     destination = target.position;
                     agent.destination = destination;
@@ -65,7 +65,7 @@ public class BearController : MonoBehaviour
                     agent.speed = 10;
                 } else {
                     print("Not Chasing");
-                    fc.chased = false;
+                    // fc.chased = false;
                     if(chasing) {
                         ChangeDirection();
                         chasing = false;

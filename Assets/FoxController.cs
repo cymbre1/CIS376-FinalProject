@@ -41,6 +41,8 @@ public class FoxController : MonoBehaviour
     protected AudioClip collect;
     protected bool finished;
 
+    GameObject[] bears;
+
     protected float duration;
 
     // Start is called before the first frame update
@@ -59,6 +61,8 @@ public class FoxController : MonoBehaviour
         mainThemeReprise = Resources.Load("InTheWoodsRepriseTrimmed") as AudioClip;
         footsteps = Resources.Load("Footstep_29") as AudioClip;
         collect = Resources.Load("collect2") as AudioClip;
+
+        bears = GameObject.FindGameObjectsWithTag("Bear");
         
         rotation.y = 95;
 
@@ -131,6 +135,15 @@ public class FoxController : MonoBehaviour
                 else{
                     hidden = false;
                 }
+            }
+        }
+
+        chased = false;
+
+        foreach(GameObject b in bears) {
+            if(b.GetComponent<BearController>().chasing) {
+                chased = true;
+                break;
             }
         }
 
