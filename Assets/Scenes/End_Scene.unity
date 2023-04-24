@@ -291,7 +291,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1806810458}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ChangeScene
         m_Mode: 5
@@ -374,8 +374,8 @@ RectTransform:
   m_Father: {fileID: 1904822067}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.1032699, y: 0.24900001}
-  m_AnchorMax: {x: 0.89932525, y: 0.9475008}
+  m_AnchorMin: {x: 0.022222225, y: 0.24730797}
+  m_AnchorMax: {x: 0.9760001, y: 0.9475008}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -399,15 +399,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Developers
-
-    Cymbre Spoehr
-
-    Kit Bazner
-
-
-    Original Score by
-    Allegra Scott'
+  m_text: "Developers\nCymbre Spoehr\nKit Bazner\n\nCollection Sound by https://freesound.org/people/Strechy/sounds/654251/\nBaidu
+    icons created by Freepik - Flaticon \n\nOriginal Score by Allegra Scott"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
   m_sharedMaterial: {fileID: -896596123744820251, guid: 101e46831a0a2884ea214489bb8601e3, type: 2}
@@ -434,7 +427,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.15
+  m_fontSize: 29.15
   m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -776,7 +769,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1806810458}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Exit
         m_Mode: 1

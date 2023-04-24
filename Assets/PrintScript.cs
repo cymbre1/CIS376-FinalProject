@@ -9,7 +9,7 @@ public class PrintScript : MonoBehaviour
     Image image;
     public string myName;
 
-    // Start is called before the first frame update
+    // Instantiates extra variables and sets the image to automatically be invisible
     void Start()
     {
         image = GetComponent<Image>();
@@ -19,7 +19,7 @@ public class PrintScript : MonoBehaviour
         fc =  fox.GetComponent<FoxController>();
     }
 
-    // Update is called once per frame
+    // Updates the image to be visible depending on name and boolean in foxController
     void Update()
     {
         if(myName == "cake") {
