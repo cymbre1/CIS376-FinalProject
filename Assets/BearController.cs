@@ -74,6 +74,7 @@ public class BearController : MonoBehaviour
             } 
             else 
             {
+                chasing = false;
                 anim.SetBool("WalkForward", true);
                 if(agent.remainingDistance <= 1.0f){
                     ChangeDirection();
