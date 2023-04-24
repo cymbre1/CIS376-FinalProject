@@ -13,7 +13,8 @@ public class BearController : MonoBehaviour
     protected FoxController fc;
     protected Vector3 ogPos;
     protected AudioSource sounds;
-
+    
+    protected bool foxAlive =  true;
     protected float timeSinceGrowl = 0;
 
     protected AudioClip endGrowl;
@@ -33,6 +34,7 @@ public class BearController : MonoBehaviour
         fc = f.GetComponent<FoxController>();
         sounds = GetComponent<AudioSource>();
 
+        // Gives the bear an initial position to go towards
         ChangeDirection();        
         
         endGrowl = Resources.Load("Bear Growl 1") as AudioClip;
@@ -40,22 +42,22 @@ public class BearController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    // Update is called once per frame and has the bear move based on either a random position, or the fox's position
     void Update()
     {
+        // Starts by turning off each possible animation
         foreach(AnimatorControllerParameter parameter in anim.parameters) {            
             anim.SetBool(parameter.name, false);            
         }
 
-
+        // Checks that the current goal is within range of the fox position
         if(Vector3.Distance(destination, target.position) > 1.0f )
         {
+            // Checks if the fox is within 100 feet
             if((Vector3.Distance(target.position, transform.position) < 100.0f)) {
-                // if the bear is within 100 feet, start chasing towards the fox
+                // checks if the fox is hidden, if it isn't, it starts to chase the fox
                 if(!fc.hidden) {
-                    print("CHASING");
                     chasing = true;
-                    // fc.chased = true;
                     anim.SetBool("WalkForward", true);
                     destination = target.position;
                     agent.destination = destination;
@@ -64,8 +66,7 @@ public class BearController : MonoBehaviour
                     }
                     agent.speed = 10;
                 } else {
-                    print("Not Chasing");
-                    // fc.chased = false;
+                    // makes sure the bear stops chasing the fox 
                     if(chasing) {
                         ChangeDirection();
                         chasing = false;
@@ -82,6 +83,7 @@ public class BearController : MonoBehaviour
             }
         }
 
+        // has the bear growl every 300 frames
         if(timeSinceGrowl == 300) {
             sounds.PlayOneShot(bearLunch, 0.5f);
             timeSinceGrowl = 0;
@@ -91,6 +93,7 @@ public class BearController : MonoBehaviour
 
     }
 
+    // Changes the target position of the bear within a range of 200
     private void ChangeDirection() {
         Vector3 randomDirection = Random.insideUnitSphere * 200;
         randomDirection += transform.position;
@@ -99,14 +102,22 @@ public class BearController : MonoBehaviour
         agent.destination = hit.position;
      }
 
+    // checks the bear's collisions and moves to the end screen if it collides with player
     void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.tag == "Player") {
-            sounds.PlayOneShot(endGrowl, 0.9f);
+            if(foxAlive){
+                Debug.Log("Dead Fox");
+                sounds.PlayOneShot(endGrowl, 0.9f);
+                foxAlive = false;
+            }
             StartCoroutine(triggerGameOver(endGrowl.length));
         }
     }
 
+    // Allows a wait time so before scene changes
+    // Parameters:
+    // float secs is the time you want to wait
     IEnumerator triggerGameOver(float secs) {
         yield return new WaitForSeconds(secs);
         FindObjectOfType<GameManager>().ChangeScene("End_Scene_Died");
