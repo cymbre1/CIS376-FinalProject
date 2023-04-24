@@ -12,13 +12,14 @@ public class BearController : MonoBehaviour
     protected NavMeshAgent agent;
     protected FoxController fc;
     protected Vector3 ogPos;
-    protected bool bearMusic = false;
     protected AudioSource sounds;
 
     protected float timeSinceGrowl = 0;
 
     protected AudioClip endGrowl;
     protected AudioClip bearLunch;
+
+    protected bool chasing;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,40 +50,38 @@ public class BearController : MonoBehaviour
 
         if(Vector3.Distance(destination, target.position) > 1.0f )
         {
-            if(!fc.hidden && (Vector3.Distance(target.position, transform.position) < 50.0f)) {
-                anim.SetBool("WalkForward", true);
-                destination = target.position;
-                agent.destination = destination;
-                agent.speed = 15;
-            }
-            if( !fc.hidden && (Vector3.Distance(target.position, transform.position) < 100.0f)) 
-            {
-                anim.SetBool("WalkForward", true);
-                destination = target.position;
-                agent.destination = destination;
-                if(!bearMusic) {
-                    fc.StartBearMusic();
-                    bearMusic = true;
+            if((Vector3.Distance(target.position, transform.position) < 100.0f)) {
+                // if the bear is within 100 feet, start chasing towards the fox
+                if(!fc.hidden) {
+                    print("CHASING");
+                    chasing = true;
+                    fc.chased = true;
+                    anim.SetBool("WalkForward", true);
+                    destination = target.position;
+                    agent.destination = destination;
+                    if(!fc.bearMusic) {
+                        fc.StartBearMusic();
+                    }
+                    agent.speed = 10;
+                } else {
+                    print("Not Chasing");
+                    fc.chased = false;
+                    if(chasing) {
+                        ChangeDirection();
+                        chasing = false;
+                    }
                 }
-                agent.speed = 10;
             } 
             else 
             {
                 anim.SetBool("WalkForward", true);
-                if(bearMusic || agent.remainingDistance <= 1.0f){
+                if(agent.remainingDistance <= 1.0f){
                     ChangeDirection();
-                }
-                if(bearMusic) {
-                    fc.StartMainTheme();
-                    bearMusic = false;
                 }
             }
         }
 
-        print(timeSinceGrowl);
         if(timeSinceGrowl == 300) {
-            // sounds.PlayOneShot(endGrowl, 0.9f);
-
             sounds.PlayOneShot(bearLunch, 0.5f);
             timeSinceGrowl = 0;
         }

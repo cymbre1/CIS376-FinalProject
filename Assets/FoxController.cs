@@ -18,6 +18,8 @@ public class FoxController : MonoBehaviour
     protected Vector3 previousPos;
     protected TerrainData terrain;
     protected AudioSource music;
+    public bool bearMusic = true;
+    public bool chased = true;
 
     public bool apple = false;
     public bool banana = false;
@@ -132,6 +134,10 @@ public class FoxController : MonoBehaviour
             }
         }
 
+        if(!chased && bearMusic) {
+            StartMainTheme();
+        }
+
         previousPos = transform.position;
     }
 
@@ -168,7 +174,6 @@ public class FoxController : MonoBehaviour
         }
 
         if(col.gameObject.tag == "Finish") {
-            print(apple);
             if(apple && banana && cake && carrot && egg && onion && garlic && ham && pumpkin && tomato) {
                 music.Stop();
                 music.clip = mainThemeReprise;
@@ -178,8 +183,6 @@ public class FoxController : MonoBehaviour
                 StartCoroutine(triggerEnd(music.clip.length));
             }
         }
-
-
     }
 
     IEnumerator triggerEnd(float secs) {
@@ -194,33 +197,62 @@ public class FoxController : MonoBehaviour
     }
 
     public void StartBearMusic() {
-        music.Stop();
-        music.clip = theBearIntro;
-        music.Play();
-        StartCoroutine(BearMusicContinue(music.clip.length));
+        print("bear");
+        if(!bearMusic) {
+            bearMusic = true;
+            music.Stop();
+            music.clip = theBearIntro;
+            music.Play();
+            StartCoroutine(BearMusicContinue(music.clip.length - (float)0.275));
+        }
     }
 
     IEnumerator BearMusicContinue(float secs) {
         yield return new WaitForSeconds(secs);
-        music.Stop();
-        music.clip = theBearMusic;
-        music.loop = true;
-        music.Play();
+        if(bearMusic)
+        {
+            music.Stop();
+            music.clip = theBearMusic;
+            music.loop = true;
+            music.Play();
+        }
     }
 
     public void StartMainTheme() {
-        music.Stop();
-        music.clip = mainThemeIntro;
-        music.Play();
-        StartCoroutine(MainThemeContinue(music.clip.length));
+        print("main");
+        if(bearMusic)
+        {
+            bearMusic = false;
+            music.Stop();
+            music.clip = mainThemeIntro;
+            music.Play();
+            StartCoroutine(MainThemeContinue(music.clip.length - (float)0.15));
+        }
 
     }
 
     IEnumerator MainThemeContinue(float secs) {
         yield return new WaitForSeconds(secs);
-        // music.Stop();
-        music.clip = mainTheme;
-        music.loop = true;
-        music.Play();
+        if(!bearMusic)
+        {
+            music.Stop();
+            music.clip = mainTheme;
+            music.loop = true;
+            music.Play();
+        }
+    }
+
+    public IEnumerator StartFade(float duration, float targetVolume)
+    {
+        float currentTime = 0;
+        float start = music.volume;
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            music.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            yield return null;
+        }
+        StartMainTheme();
+        yield break;
     }
 }
