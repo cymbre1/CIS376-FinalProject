@@ -6,21 +6,28 @@ using UnityEngine.UI;
 
 public class FoxController : MonoBehaviour
 {
-    float horizontalSpeed = 5.0f;
-    float verticalSpeed = 10.0f;
-
+    // Keeps track of different fox stats
+    protected float horizontalSpeed = 5.0f;
+    protected float verticalSpeed = 10.0f;
     protected float elapsedTime = 0;
+    protected float duration;
+
+
+    // Fox elements
     protected Transform tf;
     protected BoxCollider bc;
     protected Vector2 rotation;
-    public bool hidden = false;
     protected Animator anim;
-    protected Vector3 previousPos;
     protected TerrainData terrain;
     protected AudioSource music;
+
+    // Keeps track of the different states the fox can be in
+    public bool hidden = false;
     public bool bearMusic = true;
     public bool chased = true;
+    protected bool finished;
 
+    // Keeps track of the foods the fox has colelcted
     public bool apple = false;
     public bool banana = false;
     public bool carrot = false;
@@ -32,6 +39,7 @@ public class FoxController : MonoBehaviour
     public bool pumpkin = false;
     public bool tomato = false;
 
+    // Music and audio sound effects
     protected AudioClip theBearMusic;
     protected AudioClip theBearIntro;
     protected AudioClip mainTheme;
@@ -39,13 +47,11 @@ public class FoxController : MonoBehaviour
     protected AudioClip mainThemeReprise;
     protected AudioClip footsteps;
     protected AudioClip collect;
-    protected bool finished;
 
+    // Holds all of the bears
     GameObject[] bears;
 
-    protected float duration;
-
-    // Start is called before the first frame update
+    // Initializes all of the values for the fox and starts the main theme music
     void Start()
     {
         tf = GetComponent<Transform>();
@@ -74,10 +80,12 @@ public class FoxController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Sets all of the animation booleans to false
         foreach(AnimatorControllerParameter parameter in anim.parameters) {            
             anim.SetBool(parameter.name, false);            
         }
 
+        // Figures how much time it has been
         elapsedTime += Time.deltaTime;
 
         // Get the horizontal and vertical axis.
@@ -88,18 +96,21 @@ public class FoxController : MonoBehaviour
         // Make it move 10 meters per second instead of 10 meters per frame...
         translation *= Time.deltaTime;
         
-        // Move translation along the object's z-axis
+        // Move and animate the fox according to player input
         if(!finished)
         {
             transform.Translate(0, 0, translation);
 
             if(Input.GetAxis("Vertical") > 0.02 || Input.GetAxis("Vertical") < -0.02) {
+                // Plays the footstep sound when the fox steps.
                 if(duration > footsteps.length / 2) {
                     music.PlayOneShot(footsteps, 0.02f);
                     duration = 0;
                 } else {
                     duration += Time.deltaTime;
                 }
+
+                // Controls the animation of the fox
                 if(Input.GetAxis("Mouse X") > 0.3) {
                     anim.SetBool("WalkRight", true);
                 } else if(Input.GetAxis("Mouse X") < -0.3) {
@@ -108,9 +119,11 @@ public class FoxController : MonoBehaviour
                     anim.SetBool("WalkForward", true);
                 }
             } else {
+                // If the fox isn't moving, set the animation to stopped
                 anim.SetBool("Stop", true);
             }
         } else {
+            // If the player has reached the end, set the animation to stop
             anim.SetBool("Stop", true);
         }
 
@@ -118,6 +131,7 @@ public class FoxController : MonoBehaviour
         rotation.x = Mathf.Clamp(rotation.x, -10.0f, 10.0f);
 		transform.eulerAngles = (Vector2)rotation * horizontalSpeed;
 
+        // Finds the position of every red bush and checks to see if it is a red bush, and then checks to see if the player is in a red bush
         int treeCount = terrain.treeInstanceCount;
         for(int i =0; i< treeCount; i ++){
             TreeInstance tree = terrain.treeInstances[i];
@@ -128,6 +142,7 @@ public class FoxController : MonoBehaviour
                 var zTree = treePos.z * terrain.size.z;
                 treePos = new Vector3(xTree, yTree, zTree);
 
+                // Checks to see if the fox is close enough to the bush to count as hidden
                 if (Vector3.Distance(transform.position, treePos) <= 2.5f){
                     hidden = true;
                     break;
@@ -140,6 +155,7 @@ public class FoxController : MonoBehaviour
 
         chased = false;
 
+        // Checks to see if any of the bears are chasing the fox
         foreach(GameObject b in bears) {
             if(b.GetComponent<BearController>().chasing) {
                 chased = true;
@@ -147,18 +163,14 @@ public class FoxController : MonoBehaviour
             }
         }
 
+        // If the fox is not being chased and the bear theme is playing, start playing the main theme
         if(!chased && bearMusic) {
             StartMainTheme();
         }
-
-        previousPos = transform.position;
     }
 
     void OnTriggerEnter(Collider col) {
-        if(col.gameObject.tag == "RedBush") {
-            hidden = true;
-        } 
-
+        // If the player collides with a food item, it will check to see which one and then mark it as found.
         if(col.gameObject.tag == "Collectible") {
             if(col.gameObject.name == "apple") {
                 apple = true;
@@ -182,10 +194,14 @@ public class FoxController : MonoBehaviour
                 tomato = true;
             }
 
+            // Plays the collecting sound
             music.PlayOneShot(collect, 0.5f);
+            
+            // Destroys the food item because it has been collected.
             Destroy(col.gameObject);
         }
 
+        // If the player goes through the plane at the end and has everything on the list, mark the game as done and start the finishing music
         if(col.gameObject.tag == "Finish") {
             if(apple && banana && cake && carrot && egg && onion && garlic && ham && pumpkin && tomato) {
                 music.Stop();
@@ -198,19 +214,14 @@ public class FoxController : MonoBehaviour
         }
     }
 
+    // Changes the scene to the end scene after sec seconds to wait for the music to play
     IEnumerator triggerEnd(float secs) {
         yield return new WaitForSeconds(secs);
         FindObjectOfType<GameManager>().ChangeScene("End_Scene"); 
     }
 
-    void OnTriggerExit(Collider col) {
-        if(col.gameObject.tag == "RedBush") {
-            hidden = false;
-        } 
-    }
-
     public void StartBearMusic() {
-        print("bear");
+        // Starts the bear music intro if it is not playing and then transitions to the rest of the song once the duration has passed.
         if(!bearMusic) {
             bearMusic = true;
             music.Stop();
@@ -221,6 +232,7 @@ public class FoxController : MonoBehaviour
     }
 
     IEnumerator BearMusicContinue(float secs) {
+        // waits for secs seconds and then plays the main bear theme
         yield return new WaitForSeconds(secs);
         if(bearMusic)
         {
@@ -232,7 +244,7 @@ public class FoxController : MonoBehaviour
     }
 
     public void StartMainTheme() {
-        print("main");
+        // Starts the main theme intro and then transitions to the rest of the song once that is finished
         if(bearMusic)
         {
             bearMusic = false;
@@ -245,6 +257,7 @@ public class FoxController : MonoBehaviour
     }
 
     IEnumerator MainThemeContinue(float secs) {
+        // Waits for secs seconds and then transitions into the rest of the main theme.
         yield return new WaitForSeconds(secs);
         if(!bearMusic)
         {
@@ -253,19 +266,5 @@ public class FoxController : MonoBehaviour
             music.loop = true;
             music.Play();
         }
-    }
-
-    public IEnumerator StartFade(float duration, float targetVolume)
-    {
-        float currentTime = 0;
-        float start = music.volume;
-        while (currentTime < duration)
-        {
-            currentTime += Time.deltaTime;
-            music.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
-            yield return null;
-        }
-        StartMainTheme();
-        yield break;
     }
 }
