@@ -5,13 +5,16 @@ using UnityEngine;
 public class MinimapScript : MonoBehaviour
 {
     public Transform player;
-    // Start is called before the first frame update
+    
+    // This calls in any extra variables the minimap needs.
+    // Adds the transform of the fox to the player variable
     void Start()
     {
         player = GameObject.Find("Fox").transform;
     }
 
-    // Update is called once per frame
+    // Shifts the camera to follow the fox's position.  
+    // This is after the fox has moved in the update.
     void LateUpdate()
     {
         Vector3 newPosition = player.position;
